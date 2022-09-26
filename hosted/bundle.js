@@ -15,7 +15,7 @@
   \**************************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://igme-430-project-1/./client/client.js?");
+eval("const init = () => {\r\n\r\n};\r\n\r\nwindow.onload = init;\n\n//# sourceURL=webpack://igme-430-project-1/./client/client.js?");
 
 /***/ })
 

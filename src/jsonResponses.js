@@ -4,13 +4,13 @@ const respondJSON = (request, response, status, object) => {
     response.end();
 };
 
-const notFound = (request, response, type) => {
+const notFound = (request, response) => {
     const responseMessage = {
         message: 'The page you are looking for was not found.',
         id: 'notFound',
     };
 
-    return respondJSON(request, response, 404, responseMessage, type);
+    return respondJSON(request, response, 404, responseMessage);
 };
 
 module.exports = {
