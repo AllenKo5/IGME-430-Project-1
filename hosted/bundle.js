@@ -7,15 +7,16 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./client/addCard.js":
 /*!***************************!*\
   !*** ./client/addCard.js ***!
   \***************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("const template = document.createElement('template');\r\ntemplate.innerHTML = `\r\n<style>\r\ndiv {\r\n    width: 500px;\r\n    border-radius: 0.2em;\r\n    background-color: #f4f4f4;\r\n}\r\np, button {\r\n    margin: 0.5em 1em;\r\n}\r\n</style>\r\n<div>\r\n<p></p>\r\n<button id=\"main-button\">Add to Main/Extra Deck</button>\r\n<button id=\"side-button\">Add to Side Deck</button>\r\n</div>\r\n`;\r\n\r\nclass AddCard extends HTMLElement {\r\n    constructor() {\r\n        super();\r\n        this.attachShadow({ mode: \"open\" });\r\n        this.shadowRoot.appendChild(template.content.cloneNode(true));\r\n    }\r\n\r\n    connectedCallback() {\r\n        this.mainButton = this.shadowRoot.querySelector('#main-button');\r\n        this.sideButton = this.shadowRoot.querySelector('#side-button');\r\n        this.p = this.shadowRoot.querySelector('p');\r\n\r\n        this.mainButton.addEventListener('click', () => {\r\n\r\n        });\r\n        this.sideButton.addEventListener('click', () => {\r\n\r\n        });\r\n\r\n        this.render();\r\n    }\r\n\r\n    render() {\r\n        this.p.innerHTML = this.getAttribute('data-name');\r\n    }\r\n}\r\n\r\ncustomElements.define('add-card', AddCard);\n\n//# sourceURL=webpack://igme-430-project-1/./client/addCard.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage.js */ \"./client/storage.js\");\n\r\n\r\nconst template = document.createElement('template');\r\ntemplate.innerHTML = `\r\n<style>\r\ndiv {\r\n    width: 500px;\r\n    border-radius: 0.2em;\r\n    background-color: #f4f4f4;\r\n}\r\np, button {\r\n    margin: 0.5em 1em;\r\n}\r\n</style>\r\n<div>\r\n<p id='p1'></p>\r\n<button id=\"main-button\">Add to Main/Extra Deck</button>\r\n<p id='p2'></p>\r\n</div>\r\n`;\r\n\r\nclass AddCard extends HTMLElement {\r\n    constructor() {\r\n        super();\r\n        this.attachShadow({ mode: \"open\" });\r\n        this.shadowRoot.appendChild(template.content.cloneNode(true));\r\n    }\r\n\r\n    connectedCallback() {\r\n        this.mainButton = this.shadowRoot.querySelector('#main-button');\r\n        this.p1 = this.shadowRoot.querySelector('#p1');\r\n        this.p2 = this.shadowRoot.querySelector('#p2');\r\n\r\n        this.mainButton.addEventListener('click', () => {\r\n            _storage_js__WEBPACK_IMPORTED_MODULE_0__.addCard(this.getAttribute('data-name'));\r\n            this.p2.innerHTML += 'Added to deck<br>';\r\n        });\r\n\r\n        this.render();\r\n    }\r\n\r\n    render() {\r\n        this.p1.innerHTML = this.getAttribute('data-name');\r\n    }\r\n}\r\n\r\ncustomElements.define('add-card', AddCard);\n\n//# sourceURL=webpack://igme-430-project-1/./client/addCard.js?");
 
 /***/ }),
 
@@ -25,8 +26,27 @@ eval("const template = document.createElement('template');\r\ntemplate.innerHTML
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _addCard_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addCard.js */ \"./client/addCard.js\");\n/* harmony import */ var _addCard_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_addCard_js__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nconst createCard = (cardInfo) => {\r\n    const results = document.querySelector('#results');\r\n    const card = document.createElement('add-card');\r\n\r\n    card.dataset.name = cardInfo.name;\r\n\r\n    results.appendChild(card);\r\n};\r\n\r\nconst displayCards = async (response) => {\r\n    const results = document.querySelector('#results');\r\n\r\n    const json = await response.json();\r\n    const cards = json.data;\r\n    \r\n    for (let i = 0; i < 20 && i < cards.length; i += 1) {\r\n        createCard(cards[i]);\r\n    }\r\n    results.innerHTML += '</p>';\r\n};\r\n\r\nconst searchCard = async (cardName) => {\r\n    const YGOPRO_URL = \"https://db.ygoprodeck.com/api/v7/cardinfo.php?\";\r\n    let url = YGOPRO_URL;\r\n\r\n    let term = \"\";\r\n    if (cardName.value) {\r\n        term = cardName.value.trim();\r\n        term = encodeURIComponent(term);\r\n    }\r\n    url += `fname=${term}`;\r\n\r\n    const response = await fetch(url);\r\n\r\n    displayCards(response);\r\n};\r\n\r\nconst init = () => {\r\n    const cardName = document.querySelector('#name-field');\r\n    const searchButton = document.querySelector('#search-button');\r\n    const results = document.querySelector('#results');\r\n\r\n    searchButton.addEventListener('click', () => {\r\n        results.innerHTML = '<p>';\r\n        searchCard(cardName);\r\n    });\r\n};\r\n\r\nwindow.onload = init;\n\n//# sourceURL=webpack://igme-430-project-1/./client/client.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _addCard_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addCard.js */ \"./client/addCard.js\");\n/* harmony import */ var _displayCard_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./displayCard.js */ \"./client/displayCard.js\");\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storage.js */ \"./client/storage.js\");\n\r\n\r\n\r\n\r\nconst deckResults = (cardInfo) => {\r\n    const deck = document.querySelector('#deck');\r\n    const card = document.createElement('display-card');\r\n\r\n    card.dataset.name = cardInfo.name;\r\n    card.dataset.count = cardInfo.count;\r\n\r\n    deck.appendChild(card);\r\n};\r\n\r\nconst displayDeck = () => {\r\n    const deck = document.querySelector('#deck');\r\n\r\n    deck.innerHTML = '<p>';\r\n    for (let k of Object.keys(_storage_js__WEBPACK_IMPORTED_MODULE_2__.getDeck())) {\r\n        deckResults(_storage_js__WEBPACK_IMPORTED_MODULE_2__.getDeck()[k]);\r\n    }\r\n    deck.innerHTML += '</p>';\r\n};\r\n\r\nconst cardResults = (cardInfo) => {\r\n    const results = document.querySelector('#results');\r\n    const card = document.createElement('add-card');\r\n\r\n    card.dataset.name = cardInfo.name;\r\n\r\n    results.appendChild(card);\r\n};\r\n\r\nconst displayCards = async (response) => {\r\n    const results = document.querySelector('#results');\r\n\r\n    const json = await response.json();\r\n    const cards = json.data;\r\n\r\n    results.innerHTML = '<p>';\r\n    for (let i = 0; i < 20 && i < cards.length; i += 1) {\r\n        cardResults(cards[i]);\r\n    }\r\n    results.innerHTML += '</p>';\r\n};\r\n\r\nconst searchCard = async (cardName) => {\r\n    const YGOPRO_URL = \"https://db.ygoprodeck.com/api/v7/cardinfo.php?\";\r\n    let url = YGOPRO_URL;\r\n\r\n    let term = \"\";\r\n    if (cardName.value) {\r\n        term = cardName.value.trim();\r\n        term = encodeURIComponent(term);\r\n    }\r\n    url += `fname=${term}`;\r\n\r\n    const response = await fetch(url);\r\n\r\n    displayCards(response);\r\n};\r\n\r\nconst init = () => {\r\n    const cardName = document.querySelector('#name-field');\r\n    const deckButton = document.querySelector('#deck-button');\r\n    const searchButton = document.querySelector('#search-button');\r\n\r\n    deckButton.addEventListener('click', () => {\r\n        displayDeck();\r\n    });\r\n    searchButton.addEventListener('click', () => {\r\n        searchCard(cardName);\r\n    });\r\n};\r\n\r\nwindow.onload = init;\n\n//# sourceURL=webpack://igme-430-project-1/./client/client.js?");
+
+/***/ }),
+
+/***/ "./client/displayCard.js":
+/*!*******************************!*\
+  !*** ./client/displayCard.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage.js */ \"./client/storage.js\");\n\r\n\r\nconst template = document.createElement('template');\r\ntemplate.innerHTML = `\r\n<style>\r\ndiv {\r\n    width: 500px;\r\n    border-radius: 0.2em;\r\n    background-color: #f4f4f4;\r\n}\r\np, button {\r\n    margin: 0.5em 1em;\r\n}\r\n</style>\r\n<div>\r\n<p></p>\r\n<button id=\"remove-button\">Remove card</button>\r\n</div>\r\n`;\r\n\r\nclass DisplayCard extends HTMLElement {\r\n    constructor() {\r\n        super();\r\n        this.attachShadow({ mode: \"open\" });\r\n        this.shadowRoot.appendChild(template.content.cloneNode(true));\r\n    }\r\n\r\n    connectedCallback() {\r\n        this.removeButton = this.shadowRoot.querySelector('#remove-button');\r\n        this.p = this.shadowRoot.querySelector('p');\r\n\r\n        this.removeButton.addEventListener('click', () => {\r\n            _storage_js__WEBPACK_IMPORTED_MODULE_0__.removeCard(this.getAttribute('data-name'));\r\n        });\r\n\r\n        this.render();\r\n    }\r\n\r\n    render() {\r\n        this.p.innerHTML = `Name: ${this.getAttribute('data-name')}<br>Count: ${this.getAttribute('data-count')}`;\r\n    }\r\n}\r\n\r\ncustomElements.define('display-card', DisplayCard);\n\n//# sourceURL=webpack://igme-430-project-1/./client/displayCard.js?");
+
+/***/ }),
+
+/***/ "./client/storage.js":
+/*!***************************!*\
+  !*** ./client/storage.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addCard\": () => (/* binding */ addCard),\n/* harmony export */   \"getDeck\": () => (/* binding */ getDeck),\n/* harmony export */   \"removeCard\": () => (/* binding */ removeCard)\n/* harmony export */ });\nlet deck = {};\r\n\r\nconst addCard = (name) => {\r\n    if (deck[name]) {\r\n        deck[name].count += 1;\r\n    } else {\r\n        deck[name] = {};\r\n        deck[name].name = name;\r\n        deck[name].count = 1;\r\n    }\r\n};\r\n\r\nconst removeCard = (name) => {\r\n    if (deck[name]) {\r\n        delete deck[name];\r\n    }\r\n}\r\n\r\nconst getDeck = () => {\r\n    return deck;\r\n};\r\n\r\n\n\n//# sourceURL=webpack://igme-430-project-1/./client/storage.js?");
 
 /***/ })
 
@@ -57,18 +77,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _add
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
