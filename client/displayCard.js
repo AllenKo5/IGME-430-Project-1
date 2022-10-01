@@ -4,7 +4,7 @@ const template = document.createElement('template');
 template.innerHTML = `
 <style>
 div {
-    width: 500px;
+    width: 300px;
     border-radius: 0.2em;
     background-color: #f4f4f4;
 }

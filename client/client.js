@@ -2,6 +2,68 @@ import './addCard.js';
 import './displayCard.js';
 import * as storage from './storage.js';
 
+const handleResponse = (response) => {
+    const content = document.querySelector('#response');
+
+    switch (response.status) {
+        case 200:
+            content.innerHTML = '<b>Success</b>';
+            break;
+        case 201:
+            content.innerHTML = '<b>Created</b>';
+            break;
+        case 204:
+            content.innerHTML = '<b>Updated (No Content)</b>';
+            return;
+        case 400:
+            content.innerHTML = '<b>Bad Request</b>';
+            break;
+        default:
+            content.innerHTML = '<b>Not Found</b>';
+            break;
+    }
+}
+
+const sendPost = async (addForm) => {
+    const url = addForm.getAttribute('action');
+    const method = addForm.getAttribute('method');
+    const name = addForm.querySelector('#add-name').value;
+
+    let deck = '';
+    for (let k of Object.keys(storage.getDeck())) {
+        for (let i = 0; i < storage.getDeck()[k].count; i += 1) {
+            deck += `${storage.getDeck()[k].name}|`;
+        }
+    }
+
+    const formData = `name=${name}&deck=${deck}`;
+
+    const response = await fetch(url, {
+        method,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData,
+    });
+
+    handleResponse(response);
+};
+
+const requestUpdate = async (loadForm) => {
+    let url = loadForm.getAttribute('action');
+    const method = loadForm.getAttribute('method');
+
+    const response = await fetch(url, {
+        method,
+        headers: {
+            'Accept': 'application/json',
+        },
+    });
+
+    handleResponse(response);
+}
+
 const deckResults = (cardInfo) => {
     const deck = document.querySelector('#deck');
     const card = document.createElement('display-card');
@@ -37,11 +99,10 @@ const displayCards = async (response) => {
     const json = await response.json();
     const cards = json.data;
 
-    results.innerHTML = '<p>';
+    results.innerHTML = "";
     for (let i = 0; i < 20 && i < cards.length; i += 1) {
         cardResults(cards[i]);
     }
-    results.innerHTML += '</p>';
 };
 
 const searchCard = async (cardName) => {
@@ -61,11 +122,21 @@ const searchCard = async (cardName) => {
 };
 
 const init = () => {
-    const cardName = document.querySelector('#name-field');
-    const deckButton = document.querySelector('#deck-button');
+    const addForm = document.querySelector('#add-form');
+    const loadForm = document.querySelector('#load-form');
+    const displayButton = document.querySelector('#display-button');
     const searchButton = document.querySelector('#search-button');
+    const cardName = document.querySelector('#card-name');
 
-    deckButton.addEventListener('click', () => {
+    addForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        sendPost(addForm);
+        return false;
+    });
+    loadForm.addEventListener('submit', (e) => {
+        requestUpdate(loadForm);
+    });
+    displayButton.addEventListener('click', () => {
         displayDeck();
     });
     searchButton.addEventListener('click', () => {

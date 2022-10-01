@@ -24,7 +24,13 @@ h2 {
     font-size: 1em;
 }
 
-#deck-button, .content {
+#wrapper {
     margin: 1em;
-    font-size: 1.5em;
+}
+
+#results {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    column-gap: 10px;
 }

@@ -4,7 +4,7 @@ const template = document.createElement('template');
 template.innerHTML = `
 <style>
 div {
-    width: 500px;
+    width: 300px;
     border-radius: 0.2em;
     background-color: #f4f4f4;
 }
@@ -32,8 +32,12 @@ class AddCard extends HTMLElement {
         this.p2 = this.shadowRoot.querySelector('#p2');
 
         this.mainButton.addEventListener('click', () => {
-            storage.addCard(this.getAttribute('data-name'));
-            this.p2.innerHTML += 'Added to deck<br>';
+            const success = storage.addCard(this.getAttribute('data-name'));
+            if (success) {
+                this.p2.innerHTML = 'Added to deck';
+            } else {
+                this.p2.innerHTML = 'Already at max copies';
+            }
         });
 
         this.render();

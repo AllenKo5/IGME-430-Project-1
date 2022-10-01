@@ -16,30 +16,41 @@
         <h1>Yu-Gi-Oh! Deck Builder</h1>
     </section>
 
-    <h2>Deck</h2>
-    <button id="deck-button">Get Deck</button>
-    <section id="deck" class="content">
-        
-    </section>
+    <div id="wrapper">
+        <h2>Deck</h2>
+        <form id="add-form" action="/addDeck" method="post">
+            <label for="name">Name:</label>
+            <input id="add-name" type="text" name="name" />
+            <input type="submit" value="Add Deck" />
+        </form>
 
-    <h2>Search</h2>
-    <section id="search" class="content">
-        <label for="name">Name</label>
-        <input id="name-field" type="text" placeholder="Dark Magician" />
-        <button id="search-button">Search</button>
-    </section>
+        <form id="load-form" action="/getDeck" method="get">
+            <label for="name">Name:</label>
+            <input id="load-name" type="text" name="name" />
+            <input type="submit" value="Get Deck" />
+        </form>
+
+        <button id="display-button">Display Deck</button>
+        <section id="response" class="content">
+
+        </section>
+        <section id="deck" class="content">
+
+        </section>
+
+        <h2>Search</h2>
+        <section id="search" class="content">
+            <label for="name">Name</label>
+            <input id="card-name" type="text" placeholder="Dark Magician" />
+            <button id="search-button">Search</button>
+        </section>
 
 
-    <h2>Results</h2>
-    <section id="results" class="content">
-        Search results will be diplayed here.
-    </section>
-    
-
-    <h2>Save Deck</h2>
-    <section id="save" class="content">
-        
-    </section>
+        <h2>Results</h2>
+        <section id="results" class="content">
+            Search results will be diplayed here.
+        </section>
+    </div>
 </body>
 
 </html>
