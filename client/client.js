@@ -29,7 +29,6 @@ const handleResponse = async (response, method) => {
         const json = await response.json();
         if (json.decks[name]) {
             storage.setDeck(json.decks[name]);
-            console.log(storage.getDeck());
         }
     }
     
@@ -76,44 +75,34 @@ const requestUpdate = async (loadForm) => {
     handleResponse(response, method);
 }
 
-const deckResults = (cardInfo) => {
-    const deck = document.querySelector('#deck');
-    const card = document.createElement('display-card');
-
-    card.dataset.name = cardInfo.name;
-    card.dataset.count = cardInfo.count;
-
-    deck.appendChild(card);
-};
-
 export const displayDeck = () => {
     const deck = document.querySelector('#deck');
-
+   
     deck.innerHTML = '<p>';
     for (let k of Object.keys(storage.getDeck())) {
-        deckResults(storage.getDeck()[k]);
+        const card = document.createElement('display-card');
+        card.dataset.name = storage.getDeck()[k].name;
+        card.dataset.count = storage.getDeck()[k].count;
+        deck.appendChild(card);
     }
     deck.innerHTML += '</p>';
-};
-
-const cardResults = (cardInfo) => {
-    const results = document.querySelector('#results');
-    const card = document.createElement('add-card');
-
-    card.dataset.name = cardInfo.name;
-
-    results.appendChild(card);
 };
 
 const displayCards = async (response) => {
     const results = document.querySelector('#results');
 
     const json = await response.json();
-    const cards = json.data;
+    if (!json.data) {
+        results.innerHTML = "No cards found.";
+    } else {
+        const cards = json.data;
 
-    results.innerHTML = "";
-    for (let i = 0; i < 20 && i < cards.length; i += 1) {
-        cardResults(cards[i]);
+        results.innerHTML = "";
+        for (let i = 0; i < 20 && i < cards.length; i += 1) {
+            const card = document.createElement('add-card');
+            card.dataset.name = cards[i].name;
+            results.appendChild(card);
+        }
     }
 };
 
@@ -136,7 +125,6 @@ const searchCard = async (cardName) => {
 const init = () => {
     const addForm = document.querySelector('#add-form');
     const loadForm = document.querySelector('#load-form');
-    const displayButton = document.querySelector('#display-button');
     const searchButton = document.querySelector('#search-button');
     const cardName = document.querySelector('#card-name');
 
@@ -149,9 +137,6 @@ const init = () => {
         e.preventDefault();
         requestUpdate(loadForm);
         return false;
-    });
-    displayButton.addEventListener('click', () => {
-        displayDeck();
     });
     searchButton.addEventListener('click', () => {
         searchCard(cardName);

@@ -1,15 +1,15 @@
 let deck = {};
 
 const addCard = (name) => {
-    if (deck[name]) {
+    if (!deck[name]) {
+        deck[name] = {};
+        deck[name].name = name;
+        deck[name].count = 1;
+    } else {
         if (deck[name].count === 3) {
             return false;
         }
         deck[name].count += 1;
-    } else {
-        deck[name] = {};
-        deck[name].name = name;
-        deck[name].count = 1;
     }
     return true;
 };

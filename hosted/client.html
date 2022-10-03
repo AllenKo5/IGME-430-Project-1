@@ -26,11 +26,12 @@
 
         <form id="load-form" action="/getDeck" method="get">
             <label for="name">Name:</label>
-            <input id="load-name" type="text" name="name" />
+            <select id="load-name" name="name">
+                <option value="Branded Despia">Branded Despia</option>
+            </select>
             <input type="submit" value="Get Deck" />
         </form>
 
-        <button id="display-button">Display Deck</button>
         <section id="response" class="content">
 
         </section>
