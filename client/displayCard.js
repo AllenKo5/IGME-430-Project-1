@@ -1,4 +1,5 @@
 import * as storage from './storage.js';
+import * as client from './client.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -31,6 +32,7 @@ class DisplayCard extends HTMLElement {
 
         this.removeButton.addEventListener('click', () => {
             storage.removeCard(this.getAttribute('data-name'));
+            client.displayDeck();
         });
 
         this.render();

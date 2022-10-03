@@ -25,7 +25,12 @@ const getDeck = () => {
 };
 
 const setDeck = (newDeck) => {
-    deck = newDeck;
+    deck = {};
+    for (let k of Object.keys(newDeck)) {
+        deck[k] = {};
+        deck[k].name = k;
+        deck[k].count = newDeck[k];
+    }
 }
 
 export {

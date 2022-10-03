@@ -2,8 +2,10 @@ import './addCard.js';
 import './displayCard.js';
 import * as storage from './storage.js';
 
-const handleResponse = (response) => {
+const handleResponse = async (response, method) => {
     const content = document.querySelector('#response');
+    const loadForm = document.querySelector('#load-form');
+    const name = loadForm.querySelector('#load-name').value;
 
     switch (response.status) {
         case 200:
@@ -22,6 +24,16 @@ const handleResponse = (response) => {
             content.innerHTML = '<b>Not Found</b>';
             break;
     }
+
+    if (method === 'get') {
+        const json = await response.json();
+        if (json.decks[name]) {
+            storage.setDeck(json.decks[name]);
+            console.log(storage.getDeck());
+        }
+    }
+    
+    displayDeck();
 }
 
 const sendPost = async (addForm) => {
@@ -47,7 +59,7 @@ const sendPost = async (addForm) => {
         body: formData,
     });
 
-    handleResponse(response);
+    handleResponse(response, method);
 };
 
 const requestUpdate = async (loadForm) => {
@@ -61,7 +73,7 @@ const requestUpdate = async (loadForm) => {
         },
     });
 
-    handleResponse(response);
+    handleResponse(response, method);
 }
 
 const deckResults = (cardInfo) => {
@@ -74,7 +86,7 @@ const deckResults = (cardInfo) => {
     deck.appendChild(card);
 };
 
-const displayDeck = () => {
+export const displayDeck = () => {
     const deck = document.querySelector('#deck');
 
     deck.innerHTML = '<p>';
@@ -134,7 +146,9 @@ const init = () => {
         return false;
     });
     loadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
         requestUpdate(loadForm);
+        return false;
     });
     displayButton.addEventListener('click', () => {
         displayDeck();

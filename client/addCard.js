@@ -1,4 +1,5 @@
 import * as storage from './storage.js';
+import * as client from './client.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -38,6 +39,7 @@ class AddCard extends HTMLElement {
             } else {
                 this.p2.innerHTML = 'Already at max copies';
             }
+            client.displayDeck();
         });
 
         this.render();
