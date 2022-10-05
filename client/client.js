@@ -31,7 +31,7 @@ const handleResponse = async (response, method) => {
             storage.setDeck(json.decks[name]);
         }
     }
-    
+
     displayDeck();
 }
 
@@ -58,6 +58,8 @@ const sendPost = async (addForm) => {
         body: formData,
     });
 
+    loadDecks();
+
     handleResponse(response, method);
 };
 
@@ -77,7 +79,7 @@ const requestUpdate = async (loadForm) => {
 
 export const displayDeck = () => {
     const deck = document.querySelector('#deck');
-   
+
     deck.innerHTML = '<p>';
     for (let k of Object.keys(storage.getDeck())) {
         const card = document.createElement('display-card');
@@ -122,6 +124,27 @@ const searchCard = async (cardName) => {
     displayCards(response);
 };
 
+const updateDecks = async (response) => {
+    const loadNames = document.querySelector('#load-name');
+    const json = await response.json();
+    
+    loadNames.innerHTML = "";
+    for (let c of Object.keys(json.decks)) {
+        const option = document.createElement('option');
+        option.value = c;
+        option.innerHTML = c;
+        loadNames.appendChild(option);
+    }
+};
+
+const loadDecks = async () => {
+    const loadForm = document.querySelector('#load-form');
+    const url = loadForm.getAttribute('action');
+
+    const response = await fetch(url);
+    updateDecks(response);
+};
+
 const init = () => {
     const addForm = document.querySelector('#add-form');
     const loadForm = document.querySelector('#load-form');
@@ -141,6 +164,8 @@ const init = () => {
     searchButton.addEventListener('click', () => {
         searchCard(cardName);
     });
+
+    loadDecks();
 };
 
 window.onload = init;
