@@ -1,34 +1,124 @@
 {
     "Branded Despia": {
-        "Aluber the Jester of Despia": 2,
-        "Despian Tragedy": 2,
-        "Ad Libitum of Despia": 1,
-        "Ash Blossom and Joyous Spring": 3,
-        "Fallen of Albaz": 2,
-        "Water Enchantress of the Temple": 3,
-        "Wandering Gryphon Rider": 1,
-        "Nibiru, the Primal Being": 2,
-        "Dracoback, the Rideable Dragon": 1,
-        "Fateful Adventure": 1,
-        "Foolish Burial": 1,
-        "Called by the Grave": 1,
-        "Branded Fusion": 3,
-        "Branded in Red": 2,
-        "Branded Opening": 3,
-        "Rite of Aramesir": 3,
-        "Pot of Prosperity": 3,
-        "Super Polymerization": 3,
-        "Infinite Impermanence": 3,
-        "Albion the Branded Dragon": 2,
-        "Lubellion the Searing Dragon": 2,
-        "Mirrorjade the Iceblade Dragon": 2,
-        "Guardian Chimera": 2,
-        "Masquerade the Blazing Dragon": 1,
-        "Despian Quaeritis": 1,
-        "Panzer Dragon": 1,
-        "Predaplant Dragostapelia": 1,
-        "Mudragon of the Swamp": 1,
-        "Starving Venom Fusion Dragon": 1,
-        "Alba-Lenatus the Abyss Dragon": 1
+        "Aluber the Jester of Despia": {
+            "type": "Effect Monster",
+            "count": 2
+        },
+        "Despian Tragedy": {
+            "type": "Effect Monster",
+            "count": 2
+        },
+        "Ad Libitum of Despia": {
+            "type": "Effect Monster",
+            "count": 1
+        },
+        "Ash Blossom and Joyous Spring": {
+            "type": "Effect Monster",
+            "count": 3
+        },
+        "Fallen of Albaz": {
+            "type": "Effect Monster",
+            "count": 2
+        },
+        "Water Enchantress of the Temple": {
+            "type": "Effect Monster",
+            "count": 3
+        },
+        "Wandering Gryphon Rider": {
+            "type": "Effect Monster",
+            "count": 1
+        },
+        "Nibiru, the Primal Being": {
+            "type": "Effect Monster",
+            "count": 2
+        },
+        "Dracoback, the Rideable Dragon": {
+            "type": "Spell Card",
+            "count": 1
+        },
+        "Fateful Adventure": {
+            "type": "Spell Card",
+            "count": 1
+        },
+        "Foolish Burial": {
+            "type": "Spell Card",
+            "count": 1
+        },
+        "Called by the Grave": {
+            "type": "Spell Card",
+            "count": 1
+        },
+        "Branded Fusion": {
+            "type": "Spell Card",
+            "count": 3
+        },
+        "Branded in Red": {
+            "type": "Spell Card",
+            "count": 2
+        },
+        "Branded Opening": {
+            "type": "Spell Card",
+            "count": 3
+        },
+        "Rite of Aramesir": {
+            "type": "Spell Card",
+            "count": 3
+        },
+        "Pot of Prosperity": {
+            "type": "Spell Card",
+            "count": 3
+        },
+        "Super Polymerization": {
+            "type": "Spell Card",
+            "count": 3
+        },
+        "Infinite Impermanence": {
+            "type": "Trap Card",
+            "count": 3
+        },
+        "Albion the Branded Dragon": {
+            "type": "Fusion Monster",
+            "count": 2
+        },
+        "Lubellion the Searing Dragon": {
+            "type": "Fusion Monster",
+            "count": 2
+        },
+        "Mirrorjade the Iceblade Dragon": {
+            "type": "Fusion Monster",
+            "count": 2
+        },
+        "Guardian Chimera": {
+            "type": "Fusion Monster",
+            "count": 2
+        },
+        "Masquerade the Blazing Dragon": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Despian Quaeritis": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Panzer Dragon": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Predaplant Dragostapelia": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Mudragon of the Swamp": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Starving Venom Fusion Dragon": {
+            "type": "Fusion Monster",
+            "count": 1
+        },
+        "Alba-Lenatus the Abyss Dragon": {
+            "type": "Fusion Monster",
+            "count": 1
+        }
     }
 }

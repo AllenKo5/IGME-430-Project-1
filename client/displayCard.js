@@ -7,10 +7,16 @@ template.innerHTML = `
 div {
     width: 300px;
     border-radius: 0.2em;
-    background-color: #f4f4f4;
+    color: ghostwhite;
 }
 p, button {
-    margin: 0.5em 1em;
+    margin-left: 1em;
+}
+p {
+    padding-top: 1em;
+}
+button {
+    margin-bottom: 1em;
 }
 </style>
 <div>
@@ -29,6 +35,7 @@ class DisplayCard extends HTMLElement {
     connectedCallback() {
         this.removeButton = this.shadowRoot.querySelector('#remove-button');
         this.p = this.shadowRoot.querySelector('p');
+        this.div = this.shadowRoot.querySelector('div');
 
         this.removeButton.addEventListener('click', () => {
             storage.removeCard(this.getAttribute('data-name'));
@@ -39,7 +46,41 @@ class DisplayCard extends HTMLElement {
     }
 
     render() {
-        this.p.innerHTML = `Name: ${this.getAttribute('data-name')}<br>Count: ${this.getAttribute('data-count')}`;
+        this.p.innerHTML = `Name: ${this.getAttribute('data-name')}<br>Type: ${this.getAttribute('data-type')}<br>Count: ${this.getAttribute('data-count')}`;
+
+        switch (this.getAttribute('data-type')) {
+            case "Spell Card":
+                this.div.style.backgroundColor = '#00886f';
+                break;
+            case "Trap Card":
+                this.div.style.backgroundColor = '#aa3979';
+                break;
+            case "Ritual Monster":
+                this.div.style.backgroundColor = '#4e75ba';
+                break;
+            case "Fusion Monster":
+                this.div.style.backgroundColor = '#85428f';
+                break;
+            case "Synchro Monster":
+                this.div.style.color = '#000000';
+                this.div.style.backgroundColor = '#dbd6d2';
+                break;
+            case "Xyz Monster":
+                this.div.style.backgroundColor = '#000000';
+                break;
+            case "Link Monster":
+                this.div.style.backgroundColor = '#09467c';
+                break;
+            case "Normal Monster":
+                this.div.style.backgroundColor = '#bc9a5a';
+                break;
+            case "Effect Monster":
+                this.div.style.backgroundColor = '#b8582d';
+                break;
+            default:
+                this.div.style.backgroundColor = 'white';
+                break;
+        }
     }
 }
 

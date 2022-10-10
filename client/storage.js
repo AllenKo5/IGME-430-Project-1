@@ -1,9 +1,10 @@
 let deck = {};
 
-const addCard = (name) => {
+const addCard = (name, type) => {
     if (!deck[name]) {
         deck[name] = {};
         deck[name].name = name;
+        deck[name].type = type;
         deck[name].count = 1;
     } else {
         if (deck[name].count === 3) {
@@ -29,7 +30,8 @@ const setDeck = (newDeck) => {
     for (let k of Object.keys(newDeck)) {
         deck[k] = {};
         deck[k].name = k;
-        deck[k].count = newDeck[k];
+        deck[k].type = newDeck[k].type;
+        deck[k].count = newDeck[k].count;
     }
 }
 

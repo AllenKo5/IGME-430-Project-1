@@ -1,4 +1,5 @@
 html, body {
+    background-color: lightgray;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -6,31 +7,41 @@ html, body {
 }
 
 #top {
-    text-align: center;
     margin: 0 auto;
 }
 
 #top h1 {
     font-size: 3em;
-}
-
-h2 {
     text-align: center;
-    font-size: 2em;
-}
-
-#search {
-    text-align: center;
-    font-size: 1em;
 }
 
 #wrapper {
-    margin: 1em;
+    background-color: white;
+    padding: 1em;
 }
 
-#results {
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+b {
+    font-size: 1.5em;
+}
+
+#response, #search {
+    text-align: center;
+}
+
+#deck, #extra-deck, #results {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     column-gap: 10px;
+}
+
+footer {
+    background-color: lightgray;
+    padding: 1em;
+    text-align: center;
 }

@@ -17,26 +17,26 @@
     </section>
 
     <div id="wrapper">
-        <h2>Deck</h2>
         <form id="add-form" action="/addDeck" method="post">
             <label for="name">Name:</label>
             <input id="add-name" type="text" name="name" />
-            <input type="submit" value="Add Deck" />
+            <input type="submit" value="Add/Save Deck" />
         </form>
-
         <form id="load-form" action="/getDeck" method="get">
             <label for="name">Name:</label>
             <select id="load-name" name="name">
             </select>
-            <input type="submit" value="Get Deck" />
+            <input type="submit" value="Load Deck" />
         </form>
+        <button id="clear-button">Clear Deck</button>
+        
+        <section id="response" class="content"></section>
 
-        <section id="response" class="content">
+        <h2>Main Deck</h2>
+        <section id="deck" class="content">Main Deck cards will be displayed here.</section>
 
-        </section>
-        <section id="deck" class="content">
-
-        </section>
+        <h2>Extra Deck</h2>
+        <section id="extra-deck" class="content">Extra Deck cards will be displayed here.</section>
 
         <h2>Search</h2>
         <section id="search" class="content">
@@ -45,12 +45,15 @@
             <button id="search-button">Search</button>
         </section>
 
-
         <h2>Results</h2>
         <section id="results" class="content">
-            Search results will be diplayed here.
+            Search results will be displayed here. A maximum of 40 cards will be displayed.
         </section>
     </div>
+    <footer>
+        &copy; Allen Ko 2022<br>
+        Powered by <a href="https://ygoprodeck.com/api-guide/">YGOPRODeck</a>
+    </footer>
 </body>
 
 </html>
