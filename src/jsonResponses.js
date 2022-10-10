@@ -13,13 +13,26 @@ const respondJSONMeta = (request, response, status) => {
 };
 
 // handler functions
-const getDeck = (request, response) => {
+const getDeck = (request, response, params) => {
+  const responseJSON = {};
+
+  if (!decks[params.name]) {
+    responseJSON.message = 'Deck name not found';
+    responseJSON.id = 'deckNotFound';
+    return respondJSON(request, response, 404, responseJSON);
+  }
+
+  responseJSON.decks = decks[params.name];
+  return respondJSON(request, response, 200, responseJSON);
+};
+
+const getFull = (request, response) => {
   const responseJSON = {
     decks,
   };
 
   return respondJSON(request, response, 200, responseJSON);
-};
+}
 
 const addDeck = (request, response, body) => {
   const responseJSON = {
@@ -69,5 +82,6 @@ const notFound = (request, response) => {
 module.exports = {
   addDeck,
   getDeck,
+  getFull,
   notFound,
 };

@@ -51,8 +51,8 @@ const handleResponse = async (response, method) => {
 
     if (method === 'get') {
         const json = await response.json();
-        if (json.decks[name]) {
-            storage.setDeck(json.decks[name]);
+        if (json) {
+            storage.setDeck(json.decks);
         }
     } else {
         const json = await response.json();
@@ -93,8 +93,11 @@ const sendPost = async (addForm) => {
 };
 
 const requestUpdate = async (loadForm) => {
+    const loadName = document.querySelector('#load-name');
     let url = loadForm.getAttribute('action');
     const method = loadForm.getAttribute('method');
+
+    url += `?name=${loadName.value}`;
 
     const response = await fetch(url, {
         method,
@@ -176,10 +179,7 @@ const updateDecks = async (response) => {
 };
 
 const loadDecks = async () => {
-    const loadForm = document.querySelector('#load-form');
-    const url = loadForm.getAttribute('action');
-
-    const response = await fetch(url);
+    const response = await fetch('/getFull');
     updateDecks(response);
 };
 

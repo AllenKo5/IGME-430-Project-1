@@ -11,12 +11,13 @@ const urlStruct = {
   '/style.css': htmlHandler.getCSS,
   '/bundle.js': htmlHandler.getBundle,
   '/getDeck': jsonHandler.getDeck,
+  '/getFull': jsonHandler.getFull,
   notFound: jsonHandler.notFound,
 };
 
-const handleGet = (request, response, parsedUrl) => {
+const handleGet = (request, response, parsedUrl, queryParams) => {
   if (urlStruct[parsedUrl.pathname]) {
-    urlStruct[parsedUrl.pathname](request, response);
+    urlStruct[parsedUrl.pathname](request, response, queryParams);
   } else {
     urlStruct.notFound(request, response);
   }
@@ -50,11 +51,12 @@ const handlePost = (request, response, parsedUrl) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
+  const queryParams = query.parse(parsedUrl.query);
 
   if (request.method === 'POST') {
     handlePost(request, response, parsedUrl);
   } else {
-    handleGet(request, response, parsedUrl);
+    handleGet(request, response, parsedUrl, queryParams);
   }
 };
 
